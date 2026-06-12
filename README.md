@@ -55,6 +55,17 @@ pacman -S waybar ttf-jetbrains-mono-nerd
 ln -sfn ~/workspaces/dotfiles-archlinux/waybar ~/.config/waybar
 ```
 
+## Fuzzel
+
+Theme for the launcher and the action menu, matching the Hyprland/Waybar palette.
+No extra packages — `fuzzel` is already installed with Hyprland.
+
+### Installation
+
+```bash
+ln -sfn ~/workspaces/dotfiles-archlinux/fuzzel ~/.config/fuzzel
+```
+
 ## Action menu
 
 Keyboard-navigable menu (via `fuzzel`) for quick system actions:
