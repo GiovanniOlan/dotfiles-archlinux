@@ -44,3 +44,12 @@ hl.window_rule({
     center = true,
     size   = "600 400",
 })
+
+hl.window_rule({
+    name   = "float-calendar",
+    match  = { class = "calendar" },
+
+    float  = true,
+    center = true,
+    size   = "900 500",
+})

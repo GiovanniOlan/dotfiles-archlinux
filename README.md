@@ -47,7 +47,7 @@ ln -sfn ~/workspaces/dotfiles-archlinux/hypr ~/.config/hypr
 ## Waybar
 
 ```bash
-pacman -S waybar ttf-jetbrains-mono-nerd power-profiles-daemon python-gobject pavucontrol
+pacman -S waybar ttf-jetbrains-mono-nerd power-profiles-daemon python-gobject pavucontrol calcurse
 ```
 
 | Package                   | What it's for                                 |
@@ -57,6 +57,7 @@ pacman -S waybar ttf-jetbrains-mono-nerd power-profiles-daemon python-gobject pa
 | `power-profiles-daemon`   | Power profile switching (`powerprofilesctl`)  |
 | `python-gobject`          | Python bindings required by `powerprofilesctl`|
 | `pavucontrol`             | GUI volume mixer (click on the volume module) |
+| `calcurse`                | Interactive TUI calendar (click on the clock) |
 
 Enable the daemon so it starts on boot:
 

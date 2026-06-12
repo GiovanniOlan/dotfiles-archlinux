@@ -13,7 +13,9 @@
     },
 
     "clock": {
-        "format": "{:%H:%M  ·  %a %d %b}"
+        "format":   "{:%H:%M:%S · %a %d %b}",
+        "interval": 1,
+        "on-click": "kitty --class calendar -e calcurse"
     },
 
     "pulseaudio": {
