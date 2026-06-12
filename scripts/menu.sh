@@ -1,15 +1,33 @@
 #!/usr/bin/env bash
-# Menú de acciones del sistema, navegable con teclado vía fuzzel (modo dmenu).
-# Cada línea de $options es una opción; el case de abajo ejecuta la elegida.
+# Keyboard-navigable action menu (fuzzel, dmenu mode).
+# The top menu groups sections; each section opens its own submenu.
+# Icons are Nerd Font glyphs emitted via printf \u escapes (raw glyphs don't
+# survive in source); the case patterns use * to ignore the icon prefix.
+# To add a section: add a line in main() and a matching function.
 
-options="Recargar Hyprland
-Reiniciar Waybar
-Apagar"
+menu() { fuzzel --dmenu --hide-prompt --mesg "$1"; }
 
-choice=$(printf '%s\n' "$options" | fuzzel --dmenu --prompt "Acción: ")
+reload_configs() {
+    case "$(printf ' Reload Hyprland\n Restart Waybar\n Back\n' | menu "Reload Configs")" in
+        *"Reload Hyprland") hyprctl reload ;;
+        *"Restart Waybar")  killall waybar; setsid -f waybar ;;
+        *"Back")            main ;;
+    esac
+}
 
-case "$choice" in
-    "Recargar Hyprland") hyprctl reload ;;
-    "Reiniciar Waybar")  killall waybar; setsid -f waybar ;;
-    "Apagar")            systemctl poweroff ;;
-esac
+power() {
+    case "$(printf ' Reboot\n Shut down\n Back\n' | menu "Power")" in
+        *"Reboot")    systemctl reboot ;;
+        *"Shut down") systemctl poweroff ;;
+        *"Back")      main ;;
+    esac
+}
+
+main() {
+    case "$(printf ' Reload Configs\n Power\n' | menu "Actions")" in
+        *"Reload Configs") reload_configs ;;
+        *"Power")          power ;;
+    esac
+}
+
+main
