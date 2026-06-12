@@ -1,0 +1,46 @@
+{
+    "layer": "top",
+    "position": "bottom",
+    "height": 32,
+    "spacing": 4,
+
+    "modules-left":   ["hyprland/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right":  ["pulseaudio", "battery", "network", "tray"],
+
+    "hyprland/workspaces": {
+        "on-click": "activate"
+    },
+
+    "clock": {
+        "format": "{:%H:%M  ·  %a %d %b}"
+    },
+
+    "pulseaudio": {
+        "format":        "{volume}% {icon}",
+        "format-muted":  " muted",
+        "format-icons":  { "default": ["", "", ""] },
+        "on-click":      "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    },
+
+    "battery": {
+        "format":          "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-icons":    ["", "", "", "", ""],
+        "states": {
+            "warning":  30,
+            "critical": 15
+        }
+    },
+
+    "network": {
+        "on-click":            "kitty -e nmtui",
+        "format-wifi":         "",
+        "format-ethernet":     "",
+        "format-disconnected": ""
+    },
+
+    "tray": {
+        "spacing": 8
+    }
+}

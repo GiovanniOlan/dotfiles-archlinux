@@ -37,3 +37,20 @@ pacman -S kitty nautilus fuzzel brightnessctl playerctl
 ```bash
 ln -sfn ~/workspaces/dotfiles-archlinux/hypr ~/.config/hypr
 ```
+
+## Waybar
+
+```bash
+pacman -S waybar ttf-jetbrains-mono-nerd
+```
+
+| Paquete                  | Para qué sirve                                |
+| ------------------------ | --------------------------------------------- |
+| `waybar`                 | Barra de estado                               |
+| `ttf-jetbrains-mono-nerd`| Nerd Font con los íconos de la barra          |
+
+### Instalación
+
+```bash
+ln -sfn ~/workspaces/dotfiles-archlinux/waybar ~/.config/waybar
+```
