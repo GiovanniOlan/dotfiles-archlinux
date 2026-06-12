@@ -6,7 +6,7 @@
 
     "modules-left":   ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right":  ["pulseaudio", "battery", "network", "tray"],
+    "modules-right":  ["pulseaudio", "group/power", "network", "tray"],
 
     "hyprland/workspaces": {
         "on-click": "activate"
@@ -18,23 +18,36 @@
 
     "pulseaudio": {
         "format":        "{volume}% {icon}",
-        "format-muted":  " muted",
+        "format-muted":  "",
         "format-icons":  { "default": ["", "", ""] },
-        "on-click":      "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        "on-click":      "pavucontrol"
+    },
+
+    "group/power": {
+        "orientation": "horizontal",
+        "modules": ["battery", "custom/power-profile"]
     },
 
     "battery": {
-        "format":          "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
+        "format":          "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
         "format-icons":    ["", "", "", "", ""],
+        "on-click":        "~/.config/dotfiles-archlinux/scripts/power-profile.sh --menu",
         "states": {
             "warning":  30,
             "critical": 15
         }
     },
 
+    "custom/power-profile": {
+        "exec":        "~/.config/dotfiles-archlinux/scripts/power-profile.sh",
+        "return-type": "json",
+        "interval":    5,
+        "on-click":    "~/.config/dotfiles-archlinux/scripts/power-profile.sh --menu"
+    },
+
     "network": {
-        "on-click":            "kitty -e nmtui",
+        "on-click":            "kitty --class nmtui -e nmtui",
         "format-wifi":         "",
         "format-ethernet":     "",
         "format-disconnected": ""

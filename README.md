@@ -14,6 +14,12 @@ pacman -S pipewire wireplumber pipewire-pulse pipewire-jack pipewire-alsa
 | `pipewire-jack`   | JACK compatibility (professional audio)        |
 | `pipewire-alsa`   | Compatibility for apps using ALSA directly     |
 
+Enable as user services so they start on login:
+
+```bash
+systemctl --user enable --now pipewire pipewire-pulse wireplumber
+```
+
 ## Hyprland
 
 ### Keybinds
@@ -41,13 +47,22 @@ ln -sfn ~/workspaces/dotfiles-archlinux/hypr ~/.config/hypr
 ## Waybar
 
 ```bash
-pacman -S waybar ttf-jetbrains-mono-nerd
+pacman -S waybar ttf-jetbrains-mono-nerd power-profiles-daemon python-gobject pavucontrol
 ```
 
-| Package                  | What it's for                                 |
-| ------------------------ | --------------------------------------------- |
-| `waybar`                 | Status bar                                    |
-| `ttf-jetbrains-mono-nerd`| Nerd Font with the bar's icons                |
+| Package                   | What it's for                                 |
+| ------------------------- | --------------------------------------------- |
+| `waybar`                  | Status bar                                    |
+| `ttf-jetbrains-mono-nerd` | Nerd Font with the bar's icons                |
+| `power-profiles-daemon`   | Power profile switching (`powerprofilesctl`)  |
+| `python-gobject`          | Python bindings required by `powerprofilesctl`|
+| `pavucontrol`             | GUI volume mixer (click on the volume module) |
+
+Enable the daemon so it starts on boot:
+
+```bash
+systemctl enable --now power-profiles-daemon
+```
 
 ### Installation
 

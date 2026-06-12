@@ -25,10 +25,15 @@ window#waybar {
 
 #clock,
 #pulseaudio,
-#battery,
+#power,
 #network,
 #tray {
     padding: 0 10px;
+}
+
+#power #battery,
+#power #custom-power-profile {
+    padding: 0 4px;
 }
 
 #battery.warning {

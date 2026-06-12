@@ -26,3 +26,21 @@ hl.window_rule({
     move  = "20 monitor_h-120",
     float = true,
 })
+
+hl.window_rule({
+    name   = "float-pavucontrol",
+    match  = { class = "org.pulseaudio.pavucontrol" },
+
+    float  = true,
+    center = true,
+    size   = "800 500",
+})
+
+hl.window_rule({
+    name   = "float-nmtui",
+    match  = { class = "nmtui" },
+
+    float  = true,
+    center = true,
+    size   = "600 400",
+})
