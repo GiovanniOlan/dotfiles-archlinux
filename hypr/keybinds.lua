@@ -5,6 +5,7 @@ local mainMod = "SUPER"
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(p.terminal))
 hl.bind(mainMod .. " + E",      hl.dsp.exec_cmd(p.fileManager))
 hl.bind(mainMod .. " + P",      hl.dsp.exec_cmd(p.menu))
+hl.bind(mainMod .. " + ESCAPE", hl.dsp.exec_cmd("$HOME/.config/dotfiles-archlinux/scripts/menu.sh"))
 
 -- ── Window ────────────────────────────────────────────────────────────────────
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())

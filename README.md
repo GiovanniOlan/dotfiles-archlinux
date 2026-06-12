@@ -1,38 +1,38 @@
 # dotfiles-archlinux
 
-## Sistema base
+## Base system
 
 ```bash
 pacman -S pipewire wireplumber pipewire-pulse pipewire-jack pipewire-alsa
 ```
 
-| Paquete           | Para qué sirve                                      |
-| ----------------- | --------------------------------------------------- |
-| `pipewire`        | Servidor multimedia (audio y video)                 |
-| `wireplumber`     | Gestor de sesión de PipeWire (incluye `wpctl`)      |
-| `pipewire-pulse`  | Compatibilidad con apps de PulseAudio               |
-| `pipewire-jack`   | Compatibilidad con JACK (audio profesional)         |
-| `pipewire-alsa`   | Compatibilidad con apps que usan ALSA directo       |
+| Package           | What it's for                                  |
+| ----------------- | ---------------------------------------------- |
+| `pipewire`        | Multimedia server (audio and video)            |
+| `wireplumber`     | PipeWire session manager (provides `wpctl`)    |
+| `pipewire-pulse`  | PulseAudio compatibility for apps              |
+| `pipewire-jack`   | JACK compatibility (professional audio)        |
+| `pipewire-alsa`   | Compatibility for apps using ALSA directly     |
 
 ## Hyprland
 
 ### Keybinds
 
-Programas que necesitan los atajos definidos en `hypr/keybinds.lua`:
+Programs required by the shortcuts defined in `hypr/keybinds.lua`:
 
 ```bash
 pacman -S kitty nautilus fuzzel brightnessctl playerctl
 ```
 
-| Programa        | Para qué sirve                          |
+| Program         | What it's for                           |
 | --------------- | --------------------------------------- |
 | `kitty`         | Terminal (`SUPER+RETURN`)               |
-| `nautilus`      | Gestor de archivos (`SUPER+E`)          |
-| `fuzzel`        | Launcher de aplicaciones (`SUPER+P`)    |
-| `brightnessctl` | Control de brillo                       |
-| `playerctl`     | Control de reproducción multimedia      |
+| `nautilus`      | File manager (`SUPER+E`)                |
+| `fuzzel`        | Application launcher (`SUPER+P`)        |
+| `brightnessctl` | Brightness control                      |
+| `playerctl`     | Media playback control                  |
 
-### Instalación
+### Installation
 
 ```bash
 ln -sfn ~/workspaces/dotfiles-archlinux/hypr ~/.config/hypr
@@ -44,13 +44,28 @@ ln -sfn ~/workspaces/dotfiles-archlinux/hypr ~/.config/hypr
 pacman -S waybar ttf-jetbrains-mono-nerd
 ```
 
-| Paquete                  | Para qué sirve                                |
+| Package                  | What it's for                                 |
 | ------------------------ | --------------------------------------------- |
-| `waybar`                 | Barra de estado                               |
-| `ttf-jetbrains-mono-nerd`| Nerd Font con los íconos de la barra          |
+| `waybar`                 | Status bar                                    |
+| `ttf-jetbrains-mono-nerd`| Nerd Font with the bar's icons                |
 
-### Instalación
+### Installation
 
 ```bash
 ln -sfn ~/workspaces/dotfiles-archlinux/waybar ~/.config/waybar
+```
+
+## Action menu
+
+Keyboard-navigable menu (via `fuzzel`) for quick system actions:
+reload Hyprland, restart Waybar, power off... Opens with `SUPER + ESCAPE`.
+
+Scripts live in `scripts/` and are linked to `~/.config/dotfiles-archlinux/`,
+a dedicated space for repo utilities that don't belong to a specific program.
+
+### Installation
+
+```bash
+mkdir -p ~/.config/dotfiles-archlinux
+ln -sfn ~/workspaces/dotfiles-archlinux/scripts ~/.config/dotfiles-archlinux/scripts
 ```
