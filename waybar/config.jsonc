@@ -6,7 +6,7 @@
 
     "modules-left":   ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right":  ["pulseaudio", "group/power", "group/connectivity", "tray"],
+    "modules-right":  ["group/audio", "group/power", "group/connectivity", "tray"],
 
     "hyprland/workspaces": {
         "on-click": "activate"
@@ -18,11 +18,23 @@
         "on-click": "kitty --class calendar -e calcurse"
     },
 
-    "pulseaudio": {
-        "format":        "{volume}% {icon}",
+    "group/audio": {
+        "orientation": "horizontal",
+        "modules": ["pulseaudio#output", "pulseaudio#microphone"]
+    },
+
+    "pulseaudio#microphone": {
+        "format":              "{format_source}",
+        "format-source":       "",
+        "format-source-muted": "󰍭",
+        "on-click":            "pavucontrol -t 4"
+    },
+
+    "pulseaudio#output": {
+        "format":        "{icon}",
         "format-muted":  "",
         "format-icons":  { "default": ["", "", ""] },
-        "on-click":      "pavucontrol"
+        "on-click":      "pavucontrol -t 3"
     },
 
     "group/power": {
