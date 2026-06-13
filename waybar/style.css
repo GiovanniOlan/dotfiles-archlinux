@@ -1,6 +1,6 @@
 * {
     font-family: "JetBrainsMono Nerd Font", sans-serif;
-    font-size: 13px;
+    font-size: 16px;
     border: none;
     border-radius: 0;
 }
@@ -26,6 +26,7 @@ window#waybar {
 #clock,
 #pulseaudio,
 #power,
+#bluetooth,
 #network,
 #tray {
     padding: 0 10px;
@@ -34,6 +35,10 @@ window#waybar {
 #power #battery,
 #power #custom-power-profile {
     padding: 0 4px;
+}
+
+#bluetooth {
+    font-size: 19px;
 }
 
 #battery.warning {

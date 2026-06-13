@@ -53,3 +53,12 @@ hl.window_rule({
     center = true,
     size   = "900 500",
 })
+
+hl.window_rule({
+    name   = "float-blueman",
+    match  = { class = "blueman-manager" },
+
+    float  = true,
+    center = true,
+    size   = "600 400",
+})

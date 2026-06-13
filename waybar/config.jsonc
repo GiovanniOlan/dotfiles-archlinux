@@ -1,12 +1,12 @@
 {
     "layer": "top",
     "position": "bottom",
-    "height": 32,
+    "height": 38,
     "spacing": 4,
 
     "modules-left":   ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right":  ["pulseaudio", "group/power", "network", "tray"],
+    "modules-right":  ["pulseaudio", "group/power", "bluetooth", "network", "tray"],
 
     "hyprland/workspaces": {
         "on-click": "activate"
@@ -46,6 +46,14 @@
         "return-type": "json",
         "interval":    5,
         "on-click":    "~/.config/dotfiles-archlinux/scripts/power-profile.sh --menu"
+    },
+
+    "bluetooth": {
+        "format":          "󰂯",
+        "format-connected": "󰂱",
+        "format-disabled": "󰂲",
+        "format-off":      "󰂲",
+        "on-click":        "blueman-manager"
     },
 
     "network": {

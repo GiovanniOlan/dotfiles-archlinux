@@ -47,7 +47,7 @@ ln -sfn ~/workspaces/dotfiles-archlinux/hypr ~/.config/hypr
 ## Waybar
 
 ```bash
-pacman -S waybar ttf-jetbrains-mono-nerd power-profiles-daemon python-gobject pavucontrol calcurse
+pacman -S waybar ttf-jetbrains-mono-nerd power-profiles-daemon python-gobject pavucontrol calcurse blueman
 ```
 
 | Package                   | What it's for                                 |
@@ -58,11 +58,13 @@ pacman -S waybar ttf-jetbrains-mono-nerd power-profiles-daemon python-gobject pa
 | `python-gobject`          | Python bindings required by `powerprofilesctl`|
 | `pavucontrol`             | GUI volume mixer (click on the volume module) |
 | `calcurse`                | Interactive TUI calendar (click on the clock) |
+| `blueman`                 | Bluetooth manager (click on the bluetooth icon)|
 
-Enable the daemon so it starts on boot:
+Enable daemons so they start on boot:
 
 ```bash
 systemctl enable --now power-profiles-daemon
+systemctl enable --now bluetooth
 ```
 
 ### Installation
