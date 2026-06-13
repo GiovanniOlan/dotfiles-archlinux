@@ -26,18 +26,22 @@ window#waybar {
 #clock,
 #pulseaudio,
 #power,
-#bluetooth,
-#network,
+#connectivity,
 #tray {
     padding: 0 10px;
 }
 
 #power #battery,
-#power #custom-power-profile {
+#power #custom-power-profile,
+#connectivity #bluetooth {
     padding: 0 4px;
 }
 
-#bluetooth {
+#connectivity #network {
+    padding: 0 10px 0 4px;
+}
+
+#connectivity #bluetooth {
     font-size: 19px;
 }
 

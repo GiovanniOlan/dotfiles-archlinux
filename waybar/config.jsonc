@@ -6,7 +6,7 @@
 
     "modules-left":   ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right":  ["pulseaudio", "group/power", "bluetooth", "network", "tray"],
+    "modules-right":  ["pulseaudio", "group/power", "group/connectivity", "tray"],
 
     "hyprland/workspaces": {
         "on-click": "activate"
@@ -48,12 +48,17 @@
         "on-click":    "~/.config/dotfiles-archlinux/scripts/power-profile.sh --menu"
     },
 
+    "group/connectivity": {
+        "orientation": "horizontal",
+        "modules": ["bluetooth", "network"]
+    },
+
     "bluetooth": {
-        "format":          "󰂯",
+        "format":           "󰂯",
         "format-connected": "󰂱",
-        "format-disabled": "󰂲",
-        "format-off":      "󰂲",
-        "on-click":        "blueman-manager"
+        "format-disabled":  "󰂲",
+        "format-off":       "󰂲",
+        "on-click":         "blueman-manager"
     },
 
     "network": {
