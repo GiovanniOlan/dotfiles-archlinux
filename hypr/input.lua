@@ -1,9 +1,9 @@
 hl.config({
     input = {
         kb_layout  = "us",
-        kb_variant = "",
+        kb_variant = "altgr-intl",
+        kb_options = "lv3:lalt_switch",
         kb_model   = "",
-        kb_options = "",
         kb_rules   = "",
 
         follow_mouse = 1,

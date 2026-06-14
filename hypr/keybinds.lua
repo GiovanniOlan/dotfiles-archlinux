@@ -60,6 +60,14 @@ hl.bind("CTRL + SHIFT + PRINT", hl.dsp.exec_cmd("grimblast copysave screen"))
 -- ── Clipboard ─────────────────────────────────────────────────────────────────────────
 hl.bind("SUPER + V", hl.dsp.exec_cmd("cliphist list | fuzzel -d | cliphist decode | wl-copy"))
 
+-- ── Zoom ─────────────────────────────────────────────────────────────────────────────
+hl.bind(mainMod .. " + equal", hl.dsp.exec_cmd(
+    "f=$(hyprctl getoption cursor:zoom_factor | awk '/float:/{print $2}');" ..
+    "if [ \"$f\" = \"1.000000\" ]; then hyprctl eval 'hl.config({cursor={zoom_factor=2.0}})';" ..
+    "else hyprctl eval 'hl.config({cursor={zoom_factor=1.0}})'; fi"
+))
+
 -- ── Accesibility ────────────────────────────────────────────────────────────────────
 -- Keyboard-driven pointer control (wl-kbptr)
-hl.bind("SUPER + G", hl.dsp.exec_cmd("wl-kbptr -o modes=floating,click -o mode_floating.source=detect"))
+hl.bind("SUPER + A",         hl.dsp.exec_cmd("pkill wl-kbptr || wl-kbptr"))
+hl.bind("SUPER + SHIFT + A", hl.dsp.exec_cmd("pkill wl-kbptr || wl-kbptr -o 'general.modes=split,click'"))

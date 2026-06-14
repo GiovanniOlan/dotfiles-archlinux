@@ -1,0 +1,25 @@
+[general]
+modes=floating,click
+
+[mode_floating]
+source=detect
+label_color=#ffffffff
+label_select_color=#ffcc00ff
+unselectable_bg_color=#000000ff
+selectable_bg_color=#000000ff
+selectable_border_color=#000000ff
+label_font_family=sans-serif
+label_font_size=20 50% 40
+label_symbols=asdfjklghwerioutp
+
+[mode_split]
+pointer_size=20
+pointer_color=#ffcc00ff
+bg_color=#00000000
+area_bg_color=#00000000
+vertical_color=#ffffffcc
+horizontal_color=#ffffffcc
+history_border_color=#ffffffcc
+
+[mode_click]
+button=left

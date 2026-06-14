@@ -17,7 +17,7 @@ xdg-user-dirs-update
 ##############################################
 
 sudo pacman -S --needed \
-    pipewire wireplumber pipewire-pulse pipewire-jack pipewire-alsa
+    xdg-desktop-portal xdg-desktop-portal-hyprland pipewire wireplumber pipewire-pulse pipewire-jack pipewire-alsa
 
 systemctl --user enable --now pipewire pipewire-pulse wireplumber
 
@@ -33,6 +33,7 @@ git clone https://aur.archlinux.org/wl-kbptr.git /tmp/wl-kbptr
 (cd /tmp/wl-kbptr && makepkg -si)
 
 ln -sfn "$DOTFILES_DIR/hypr" ~/.config/hypr
+ln -sfn "$DOTFILES_DIR/wl-kbptr" ~/.config/wl-kbptr
 
 ##############################################
 # Waybar
