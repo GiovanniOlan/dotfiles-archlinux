@@ -22,29 +22,35 @@ systemctl --user enable --now pipewire pipewire-pulse wireplumber
 
 ## Hyprland
 
-### Keybinds
-
-Programs required by the shortcuts defined in `hypr/keybinds.lua`:
+### Install packages required.
 
 ```bash
-pacman -S kitty nautilus fuzzel brightnessctl playerctl
+pacman -S kitty nautilus brightnessctl playerctl
 ```
 
-| Program         | What it's for                           |
-| --------------- | --------------------------------------- |
-| `kitty`         | Terminal (`SUPER+RETURN`)               |
-| `nautilus`      | File manager (`SUPER+E`)                |
-| `fuzzel`        | Application launcher (`SUPER+P`)        |
-| `brightnessctl` | Brightness control                      |
-| `playerctl`     | Media playback control                  |
+```bash
+git clone https://aur.archlinux.org/wl-kbptr.git
+cd wl-kbptr
+makepkg -si
+```
 
-### Installation
+| Program           | What it's for                               |
+| ---------------   | ------------------------------------------- |
+| `kitty`           | Terminal (`SUPER+RETURN`)                   |
+| `nautilus`        | File manager (`SUPER+E`)                    |
+| `brightnessctl`   | Brightness control                          |
+| `playerctl`       | Media playback control                      |
+| `wl-kbptr` (AUR)  | keyboard-driven pointer control (`SUPER+G`) |
+
+### Install config.
 
 ```bash
-ln -sfn ~/workspaces/dotfiles-archlinux/hypr ~/.config/hypr
+ln -sfn ~/dotfiles-archlinux/hypr ~/.config/hypr
 ```
 
 ## Waybar
+
+### Install packages required.
 
 ```bash
 pacman -S waybar ttf-jetbrains-mono-nerd power-profiles-daemon python-gobject pavucontrol calcurse blueman
@@ -60,28 +66,37 @@ pacman -S waybar ttf-jetbrains-mono-nerd power-profiles-daemon python-gobject pa
 | `calcurse`                | Interactive TUI calendar (click on the clock) |
 | `blueman`                 | Bluetooth manager (click on the bluetooth icon)|
 
-Enable daemons so they start on boot:
+### Enable daemons.
 
 ```bash
 systemctl enable --now power-profiles-daemon
 systemctl enable --now bluetooth
 ```
 
-### Installation
+### Install config.
 
 ```bash
-ln -sfn ~/workspaces/dotfiles-archlinux/waybar ~/.config/waybar
+ln -sfn ~/dotfiles-archlinux/waybar ~/.config/waybar
 ```
 
 ## Fuzzel
 
-Theme for the launcher and the action menu, matching the Hyprland/Waybar palette.
-No extra packages — `fuzzel` is already installed with Hyprland.
+Theme for the launcher and the action menu.
 
-### Installation
+### Install packages required.
 
 ```bash
-ln -sfn ~/workspaces/dotfiles-archlinux/fuzzel ~/.config/fuzzel
+pacman -S fuzzel
+```
+
+| Program         | What it's for                               |
+| --------------- | ------------------------------------------- |
+| `fuzzel`        | Application launcher (`SUPER+P`)            |
+
+### Installa config.
+
+```bash
+ln -sfn ~/dotfiles-archlinux/fuzzel ~/.config/fuzzel
 ```
 
 ## Action menu
@@ -96,5 +111,5 @@ a dedicated space for repo utilities that don't belong to a specific program.
 
 ```bash
 mkdir -p ~/.config/dotfiles-archlinux
-ln -sfn ~/workspaces/dotfiles-archlinux/scripts ~/.config/dotfiles-archlinux/scripts
+ln -sfn ~/dotfiles-archlinux/scripts ~/.config/dotfiles-archlinux/scripts
 ```

@@ -24,9 +24,10 @@ power_profile() {
 }
 
 power() {
-    case "$(printf $'\uf021 Reboot\n\uf011 Shut down\n\uf135 Power Profile\n\uf060 Back\n' | menu "Power")" in
+    case "$(printf $'\uf021 Reboot\n\uf011 Shut down\n\uf9ec Suspend\n\uf135 Power Profile\n\uf060 Back\n' | menu "Power")" in
         *"Reboot")         systemctl reboot ;;
         *"Shut down")      systemctl poweroff ;;
+        *"Suspend")        systemctl suspend ;;
         *"Power Profile")  power_profile ;;
         *"Back")           main ;;
     esac
