@@ -62,3 +62,12 @@ hl.window_rule({
     center = true,
     size   = "600 400",
 })
+
+hl.window_rule({
+    name   = "float-imv",
+    match  = { class = "imv" },
+
+    float  = true,
+    center = true,
+    size   = "1000 600",
+})

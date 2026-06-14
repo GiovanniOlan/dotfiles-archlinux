@@ -4,6 +4,15 @@ set -euo pipefail
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 ##############################################
+# User directories
+##############################################
+
+sudo pacman -S --needed xdg-user-dirs
+
+ln -sfn "$DOTFILES_DIR/user-dirs/user-dirs.dirs" ~/.config/user-dirs.dirs
+xdg-user-dirs-update
+
+##############################################
 # Base system
 ##############################################
 
@@ -17,7 +26,7 @@ systemctl --user enable --now pipewire pipewire-pulse wireplumber
 ##############################################
 
 sudo pacman -S --needed \
-    kitty nautilus brightnessctl playerctl
+    kitty nautilus brightnessctl playerctl fuzzel
 
 # wl-kbptr is AUR-only
 git clone https://aur.archlinux.org/wl-kbptr.git /tmp/wl-kbptr
@@ -47,8 +56,27 @@ sudo pacman -S --needed fuzzel
 ln -sfn "$DOTFILES_DIR/fuzzel" ~/.config/fuzzel
 
 ##############################################
+# Screenshots
+##############################################
+
+sudo pacman -S --needed grim slurp jq wl-clipboard imv
+
+git clone https://github.com/hyprwm/contrib.git /tmp/hyprwm-contrib
+(cd /tmp/hyprwm-contrib/grimblast && sudo make install)
+
+mkdir -p ~/Pictures/Screenshots
+
+##############################################
+# Clipboard
+##############################################
+
+sudo pacman -S --needed wl-clipboard cliphist fuzzel
+
+##############################################
 # Action menu
 ##############################################
+
+sudo pacman -S --needed fuzzel
 
 mkdir -p ~/.config/dotfiles-archlinux
 ln -sfn "$DOTFILES_DIR/scripts" ~/.config/dotfiles-archlinux/scripts

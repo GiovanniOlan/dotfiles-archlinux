@@ -52,6 +52,14 @@ hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tr
 hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
 
+-- ── Screenshots ──────────────────────────────────────────────────────────────────────
+hl.bind("PRINT",                hl.dsp.exec_cmd("grimblast copysave area"))
+hl.bind("SHIFT + PRINT",        hl.dsp.exec_cmd("grimblast copysave output"))
+hl.bind("CTRL + SHIFT + PRINT", hl.dsp.exec_cmd("grimblast copysave screen"))
+
+-- ── Clipboard ─────────────────────────────────────────────────────────────────────────
+hl.bind("SUPER + V", hl.dsp.exec_cmd("cliphist list | fuzzel -d | cliphist decode | wl-copy"))
+
 -- ── Accesibility ────────────────────────────────────────────────────────────────────
 -- Keyboard-driven pointer control (wl-kbptr)
 hl.bind("SUPER + G", hl.dsp.exec_cmd("wl-kbptr -o modes=floating,click -o mode_floating.source=detect"))
