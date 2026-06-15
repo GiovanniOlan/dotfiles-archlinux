@@ -10,9 +10,17 @@ hl.bind(mainMod .. " + ESCAPE", hl.dsp.exec_cmd("$HOME/.config/dotfiles-archlinu
 -- ── Window ────────────────────────────────────────────────────────────────────
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + W", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + F",         hl.dsp.window.fullscreen({ mode = 1 }))
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = 0 }))
+hl.bind(mainMod .. " + T", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd(
     "command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"
 ))
+
+-- ── Focus (cycle) ────────────────────────────────────────────────────────────
+hl.bind("ALT + Tab",         hl.dsp.window.cycle_next())
+hl.bind("ALT + SHIFT + Tab", hl.dsp.window.cycle_next({ next=false }))
+
 
 -- ── Focus (vim keys) ──────────────────────────────────────────────────────────
 hl.bind(mainMod .. " + h", hl.dsp.focus({ direction = "left"  }))
@@ -20,20 +28,41 @@ hl.bind(mainMod .. " + l", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + k", hl.dsp.focus({ direction = "up"    }))
 hl.bind(mainMod .. " + j", hl.dsp.focus({ direction = "down"  }))
 
+-- ── Swap (vim keys) ──────────────────────────────────────────────────────────
+hl.bind(mainMod .. " + SHIFT + h", hl.dsp.window.swap({ direction = "left"  }))
+hl.bind(mainMod .. " + SHIFT + l", hl.dsp.window.swap({ direction = "right" }))
+hl.bind(mainMod .. " + SHIFT + k", hl.dsp.window.swap({ direction = "up"    }))
+hl.bind(mainMod .. " + SHIFT + j", hl.dsp.window.swap({ direction = "down"  }))
+
+-- ── Resize (vim keys) ────────────────────────────────────────────────────────
+hl.bind(mainMod .. " + CTRL + h", hl.dsp.window.resize({ x = -20, y = 0,   relative = true }), { repeating = true })
+hl.bind(mainMod .. " + CTRL + l", hl.dsp.window.resize({ x = 20,  y = 0,   relative = true }), { repeating = true })
+hl.bind(mainMod .. " + CTRL + k", hl.dsp.window.resize({ x = 0,   y = -20, relative = true }), { repeating = true })
+hl.bind(mainMod .. " + CTRL + j", hl.dsp.window.resize({ x = 0,   y = 20,  relative = true }), { repeating = true })
+
+-- ── Monitors ─────────────────────────────────────────────────────────────────
+hl.bind(mainMod .. " + TAB", hl.dsp.focus({ monitor = "+1" }))
+
 -- ── Workspaces ────────────────────────────────────────────────────────────────
 for i = 1, 5 do
-    hl.bind(mainMod .. " + " .. i,         hl.dsp.focus({ workspace = i }))
-    hl.bind(mainMod .. " + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }))
+    hl.bind(mainMod .. " + " .. i,         hl.dsp.focus({ workspace = i, on_current_monitor = true }))
+    hl.bind(mainMod .. " + SHIFT + " .. i, hl.dsp.exec_cmd(
+        "hyprctl dispatch 'hl.dsp.window.move({workspace=" .. i .. ", follow=false})'" ..
+        " && hyprctl dispatch 'hl.dsp.focus({workspace=" .. i .. ", on_current_monitor=true})'"
+    ))
 end
 
 local extra = { z = 6, x = 7, c = 8, d = 9 }
 for key, ws in pairs(extra) do
-    hl.bind(mainMod .. " + " .. key,         hl.dsp.focus({ workspace = ws }))
-    hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = ws }))
+    hl.bind(mainMod .. " + " .. key,         hl.dsp.focus({ workspace = ws, on_current_monitor = true }))
+    hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.exec_cmd(
+        "hyprctl dispatch 'hl.dsp.window.move({workspace=" .. ws .. ", follow=false})'" ..
+        " && hyprctl dispatch 'hl.dsp.focus({workspace=" .. ws .. ", on_current_monitor=true})'"
+    ))
 end
 
-hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1", on_current_monitor = true }))
+hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1", on_current_monitor = true }))
 hl.bind(mainMod .. " + mouse:272",  hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mainMod .. " + mouse:273",  hl.dsp.window.resize(), { mouse = true })
 
