@@ -17,7 +17,8 @@ xdg-user-dirs-update
 ##############################################
 
 sudo pacman -S --needed \
-    xdg-desktop-portal xdg-desktop-portal-hyprland pipewire wireplumber pipewire-pulse pipewire-jack pipewire-alsa
+    xdg-desktop-portal xdg-desktop-portal-hyprland pipewire wireplumber \
+    pipewire-pulse pipewire-jack pipewire-alsa polkit polkit-gnome udisks2
 
 systemctl --user enable --now pipewire pipewire-pulse wireplumber
 
@@ -26,6 +27,7 @@ systemctl --user enable --now pipewire pipewire-pulse wireplumber
 ##############################################
 
 sudo pacman -S --needed \
+    hyprland git base-devel \
     kitty nautilus brightnessctl playerctl fuzzel
 
 # wl-kbptr is AUR-only
@@ -60,7 +62,8 @@ ln -sfn "$DOTFILES_DIR/fuzzel" ~/.config/fuzzel
 # Screenshots
 ##############################################
 
-sudo pacman -S --needed grim slurp jq wl-clipboard imv
+sudo pacman -S --needed git base-devel scdoc \
+    grim slurp jq wl-clipboard imv
 
 git clone https://github.com/hyprwm/contrib.git /tmp/hyprwm-contrib
 (cd /tmp/hyprwm-contrib/grimblast && sudo make install)

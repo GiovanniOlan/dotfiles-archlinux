@@ -22,7 +22,7 @@ run `install.sh` from a base Arch install, and the environment is ready.
 | Session start | Display manager or TTY auto-login to launch Hyprland | pending |
 | Wallpaper | Wallpaper setter that survives restarts | pending |
 | Screen locking | Lock screen on suspend and on demand | pending |
-| Authentication | Polkit agent for GUI privilege escalation dialogs | pending |
+| Authentication | Polkit agent for GUI privilege escalation dialogs | done |
 | System fonts | Base fonts so apps render text correctly out of the box | pending |
 
 ---
@@ -30,7 +30,7 @@ run `install.sh` from a base Arch install, and the environment is ready.
 ## Base system
 
 ```bash
-pacman -S pipewire wireplumber pipewire-pulse pipewire-jack pipewire-alsa
+pacman -S pipewire wireplumber pipewire-pulse pipewire-jack pipewire-alsa udisks2
 ```
 
 | Package           | What it's for                                  |
@@ -40,6 +40,7 @@ pacman -S pipewire wireplumber pipewire-pulse pipewire-jack pipewire-alsa
 | `pipewire-pulse`  | PulseAudio compatibility for apps              |
 | `pipewire-jack`   | JACK compatibility (professional audio)        |
 | `pipewire-alsa`   | Compatibility for apps using ALSA directly     |
+| `udisks2`         | Disk management daemon (USB detection and mounting) |
 
 Enable as user services so they start on login:
 
@@ -172,6 +173,22 @@ pacman -S wl-clipboard cliphist fuzzel
 | `wl-clipboard` | Wayland clipboard integration (`wl-copy`/`wl-paste`) |
 | `cliphist`     | Stores clipboard history                           |
 | `fuzzel`       | History picker (`SUPER+V`)                         |
+
+## Authentication
+
+Polkit agent that handles GUI privilege escalation dialogs — mounting drives in Nautilus, Bluetooth pairing, and any operation that requires elevated privileges from a GUI app.
+
+Starts automatically on Hyprland launch.
+
+### Install packages required.
+
+```bash
+pacman -S polkit-gnome
+```
+
+| Package | What it's for |
+| ------- | ------------- |
+| `polkit-gnome` | GUI password dialog for privilege escalation |
 
 ## Action menu
 
