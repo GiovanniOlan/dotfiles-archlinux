@@ -47,7 +47,7 @@ fi
 ##############################################
 
 sudo pacman -S --needed \
-    hyprland \
+    hyprland hyprlock hypridle \
     kitty nautilus brightnessctl playerctl fuzzel
 
 paru -S --needed wl-kbptr

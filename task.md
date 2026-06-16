@@ -10,9 +10,15 @@
 
 - [ ] **Instalar paru**: agregar instalación de paru (AUR helper) en `install.sh` si no está ya instalado, antes de cualquier sección que requiera paquetes AUR.
 
+## Hyprland keybinds pendientes
+
+- [ ] **Emoji picker** (`SUPER+,`): integrar un picker de emojis rápido accesible desde cualquier app.
+
+- [ ] **Zoom mejorado**: reemplazar el zoom de Hyprland por una solución que active un submap/capa dedicada donde solo puedas desplazarte por la pantalla con zoom, sin interactuar con las apps. El zoom actual permite seguir escribiendo, lo cual no es el comportamiento deseado.
+
 ## Entorno pendiente de implementar
 
-- [ ] **Session start**: configurar auto-login desde TTY que lance Hyprland directamente, sin display manager.
+- [x] **Session start**: auto-login en TTY1 vía drop-in de getty + `exec Hyprland` en `.bash_profile`. Requiere LUKS.
 
 - [ ] **Wallpaper**: integrar un setter de fondo de pantalla (ej. `swww` o `hyprpaper`) que persista entre reinicios y se inicie en el autostart de Hyprland.
 

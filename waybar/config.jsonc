@@ -39,7 +39,15 @@
 
     "group/power": {
         "orientation": "horizontal",
-        "modules": ["battery", "custom/power-profile"]
+        "modules": ["custom/hypridle", "battery", "custom/power-profile"]
+    },
+
+    "custom/hypridle": {
+        "exec":        "pidof hypridle > /dev/null && echo '{\"text\":\"󰛊\",\"tooltip\":\"Idle active\"}' || echo '{\"text\":\"󰅶\",\"tooltip\":\"Awake\"}'",
+        "return-type": "json",
+        "interval":    "once",
+        "signal":      8,
+        "on-click":    "~/.config/dotfiles-archlinux/scripts/hypridle-toggle.sh"
     },
 
     "battery": {

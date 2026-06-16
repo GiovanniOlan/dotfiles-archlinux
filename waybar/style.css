@@ -34,6 +34,7 @@ window#waybar {
 #audio #pulseaudio,
 #power #battery,
 #power #custom-power-profile,
+#power #custom-hypridle,
 #connectivity #bluetooth {
     padding: 0 4px;
 }
