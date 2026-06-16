@@ -33,3 +33,9 @@ Install manually after running the script if they apply to your machine.
 | Package | When to install |
 | ------- | --------------- |
 | `sof-firmware` | Intel laptops (~2020 onwards). Required for internal speakers and microphone to be detected. Without it, audio hardware exists but ALSA never registers it. |
+
+## Per-machine font tuning
+
+The font configuration in `fontconfig/fonts.conf` works out of the box on any display. If text rendering looks off on a specific machine, consider tuning hinting and antialiasing in that file — these settings are display-dependent and not worth hardcoding in a generic setup.
+
+Relevant options: `antialias`, `hinting`, `hintstyle`, `rgba`, `lcdfilter`. See the [Arch Wiki on Font Configuration](https://wiki.archlinux.org/title/Font_configuration) for reference.
