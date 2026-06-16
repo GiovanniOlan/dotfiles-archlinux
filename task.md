@@ -8,7 +8,7 @@
 
 ## Install script
 
-- [ ] **Instalar paru**: agregar instalación de paru (AUR helper) en `install.sh` si no está ya instalado, antes de cualquier sección que requiera paquetes AUR.
+- [x] **Instalar paru**: agregar instalación de paru (AUR helper) en `install.sh` si no está ya instalado, antes de cualquier sección que requiera paquetes AUR.
 
 ## Hyprland keybinds pendientes
 
@@ -22,6 +22,6 @@
 
 - [ ] **Wallpaper**: integrar un setter de fondo de pantalla (ej. `swww` o `hyprpaper`) que persista entre reinicios y se inicie en el autostart de Hyprland.
 
-- [ ] **Screen locking**: configurar bloqueo de pantalla automático al suspender y bajo demanda (ej. `hyprlock` + `hypridle`).
+- [x] **Screen locking**: configurar bloqueo de pantalla automático al suspender y bajo demanda (ej. `hyprlock` + `hypridle`).
 
-- [ ] **System fonts**: definir un set de fuentes base que garantice que las apps rendericen texto correctamente desde el primer arranque.
+- [x] **System fonts**: definir un set de fuentes base que garantice que las apps rendericen texto correctamente desde el primer arranque.

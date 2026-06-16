@@ -47,21 +47,17 @@ hl.bind(mainMod .. " + CTRL + j", hl.dsp.window.resize({ x = 0,   y = 20,  relat
 hl.bind(mainMod .. " + TAB", hl.dsp.focus({ monitor = "+1" }))
 
 -- ── Workspaces ────────────────────────────────────────────────────────────────
-for i = 1, 5 do
-    hl.bind(mainMod .. " + " .. i,         hl.dsp.focus({ workspace = i, on_current_monitor = true }))
-    hl.bind(mainMod .. " + SHIFT + " .. i, hl.dsp.exec_cmd(
-        "hyprctl dispatch 'hl.dsp.window.move({workspace=" .. i .. ", follow=false})'" ..
-        " && hyprctl dispatch 'hl.dsp.focus({workspace=" .. i .. ", on_current_monitor=true})'"
-    ))
-end
+for i = 1, 10 do
+    local key = (i == 10) and 0 or i
 
-local extra = { z = 6, x = 7, c = 8, d = 9 }
-for key, ws in pairs(extra) do
-    hl.bind(mainMod .. " + " .. key,         hl.dsp.focus({ workspace = ws, on_current_monitor = true }))
-    hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.exec_cmd(
-        "hyprctl dispatch 'hl.dsp.window.move({workspace=" .. ws .. ", follow=false})'" ..
-        " && hyprctl dispatch 'hl.dsp.focus({workspace=" .. ws .. ", on_current_monitor=true})'"
-    ))
+    hl.bind(mainMod .. " + " .. key,
+        hl.dsp.focus({ workspace = i, on_current_monitor = true }))
+
+    hl.bind(mainMod .. " + SHIFT + " .. key,
+        hl.dsp.exec_cmd(
+            "hyprctl dispatch 'hl.dsp.window.move({workspace=" .. i .. ", follow=false})'" ..
+            " && hyprctl dispatch 'hl.dsp.focus({workspace=" .. i .. ", on_current_monitor=true})'"
+        ))
 end
 
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1", on_current_monitor = true }))

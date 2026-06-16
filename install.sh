@@ -18,9 +18,11 @@ xdg-user-dirs-update
 
 sudo pacman -S --needed \
     git base-devel xdg-desktop-portal xdg-desktop-portal-hyprland pipewire wireplumber \
-    pipewire-pulse pipewire-jack pipewire-alsa polkit polkit-gnome udisks2
+    pipewire-pulse pipewire-jack pipewire-alsa polkit polkit-gnome udisks2 \
+    networkmanager
 
 systemctl --user enable --now pipewire pipewire-pulse wireplumber
+sudo systemctl enable --now NetworkManager
 
 ##############################################
 # System fonts
