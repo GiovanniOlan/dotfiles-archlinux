@@ -17,22 +17,29 @@ xdg-user-dirs-update
 ##############################################
 
 sudo pacman -S --needed \
-    xdg-desktop-portal xdg-desktop-portal-hyprland pipewire wireplumber \
+    git base-devel xdg-desktop-portal xdg-desktop-portal-hyprland pipewire wireplumber \
     pipewire-pulse pipewire-jack pipewire-alsa polkit polkit-gnome udisks2
 
 systemctl --user enable --now pipewire pipewire-pulse wireplumber
+
+##############################################
+# Paru (AUR helper)
+##############################################
+
+if ! command -v paru &>/dev/null; then
+    git clone https://aur.archlinux.org/paru.git /tmp/paru
+    (cd /tmp/paru && makepkg -si --noconfirm)
+fi
 
 ##############################################
 # Hyprland
 ##############################################
 
 sudo pacman -S --needed \
-    hyprland git base-devel \
+    hyprland \
     kitty nautilus brightnessctl playerctl fuzzel
 
-# wl-kbptr is AUR-only
-git clone https://aur.archlinux.org/wl-kbptr.git /tmp/wl-kbptr
-(cd /tmp/wl-kbptr && makepkg -si)
+paru -S --needed wl-kbptr
 
 ln -sfn "$DOTFILES_DIR/hypr" ~/.config/hypr
 ln -sfn "$DOTFILES_DIR/wl-kbptr" ~/.config/wl-kbptr
@@ -62,11 +69,9 @@ ln -sfn "$DOTFILES_DIR/fuzzel" ~/.config/fuzzel
 # Screenshots
 ##############################################
 
-sudo pacman -S --needed git base-devel scdoc \
-    grim slurp jq wl-clipboard imv
+sudo pacman -S --needed grim slurp jq wl-clipboard imv
 
-git clone https://github.com/hyprwm/contrib.git /tmp/hyprwm-contrib
-(cd /tmp/hyprwm-contrib/grimblast && sudo make install)
+paru -S --needed grimblast
 
 mkdir -p ~/Pictures/Screenshots
 
