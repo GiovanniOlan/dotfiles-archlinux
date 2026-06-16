@@ -84,3 +84,26 @@ sudo pacman -S --needed fuzzel
 
 mkdir -p ~/.config/dotfiles-archlinux
 ln -sfn "$DOTFILES_DIR/scripts" ~/.config/dotfiles-archlinux/scripts
+
+##############################################
+# Session start
+# Requires LUKS full-disk encryption — the
+# passphrase at boot serves as authentication.
+##############################################
+
+sudo mkdir -p /etc/systemd/system/getty@tty1.service.d
+sudo tee /etc/systemd/system/getty@tty1.service.d/autologin.conf > /dev/null <<EOF
+[Service]
+ExecStart=
+ExecStart=-/sbin/agetty --autologin $USER --noclear %I \$TERM
+EOF
+sudo systemctl daemon-reload
+
+if ! grep -q 'exec start-hyprland' ~/.bash_profile 2>/dev/null; then
+    cat >> ~/.bash_profile <<'EOF'
+
+if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = "1" ]; then
+    exec start-hyprland
+fi
+EOF
+fi
