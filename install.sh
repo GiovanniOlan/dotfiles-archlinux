@@ -23,6 +23,17 @@ sudo pacman -S --needed \
 systemctl --user enable --now pipewire pipewire-pulse wireplumber
 
 ##############################################
+# System fonts
+##############################################
+
+sudo pacman -S --needed \
+    noto-fonts noto-fonts-emoji noto-fonts-cjk \
+    ttf-liberation ttf-carlito ttf-caladea \
+    ttf-jetbrains-mono-nerd
+
+ln -sfn "$DOTFILES_DIR/fontconfig" ~/.config/fontconfig
+
+##############################################
 # Paru (AUR helper)
 ##############################################
 
@@ -49,7 +60,7 @@ ln -sfn "$DOTFILES_DIR/wl-kbptr" ~/.config/wl-kbptr
 ##############################################
 
 sudo pacman -S --needed \
-    waybar ttf-jetbrains-mono-nerd power-profiles-daemon python-gobject \
+    waybar power-profiles-daemon python-gobject \
     pavucontrol calcurse blueman
 
 sudo systemctl enable --now power-profiles-daemon
