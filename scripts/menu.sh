@@ -4,7 +4,13 @@
 # Icons use ANSI-C quoting ($'\uXXXX') — look up codepoints at nerdfonts.com/cheat-sheet.
 # To add a section: add a line in main() and a matching function.
 
-menu() { fuzzel --dmenu --hide-prompt --mesg "$1"; }
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Fit width/height to the menu's content; the global fuzzel config is sized for the launcher.
+menu() {
+    local items; items="$(cat)"
+    fuzzel --dmenu --hide-prompt --width 24 --lines "$(grep -c . <<<"$items")" --mesg "$1" <<<"$items"
+}
 
 reload_configs() {
     case "$(printf $'\uf021 Reload Hyprland\n\uf2f1 Restart Waybar\n\uf060 Back\n' | menu "Reload Configs")" in
@@ -34,9 +40,10 @@ power() {
 }
 
 main() {
-    case "$(printf $'\uf021 Reload Configs\n\uf011 Power\n' | menu "Actions")" in
-        *"Reload Configs") reload_configs ;;
-        *"Power")          power ;;
+    case "$(printf $'\uf021 Reload Configs\n\uf1f6 Do Not Disturb\n\uf011 Power\n' | menu "Actions")" in
+        *"Reload Configs")   reload_configs ;;
+        *"Do Not Disturb")   "$SCRIPT_DIR/dnd-toggle.sh" ;;
+        *"Power")            power ;;
     esac
 }
 

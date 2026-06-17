@@ -24,6 +24,7 @@ window#waybar {
 }
 
 #clock,
+#state,
 #audio,
 #power,
 #connectivity,
@@ -32,9 +33,10 @@ window#waybar {
 }
 
 #audio #pulseaudio,
+#state #custom-hypridle,
+#state #custom-dnd,
 #power #battery,
 #power #custom-power-profile,
-#power #custom-hypridle,
 #connectivity #bluetooth {
     padding: 0 4px;
 }

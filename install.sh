@@ -100,6 +100,8 @@ sudo pacman -S --needed wl-clipboard cliphist fuzzel
 
 sudo pacman -S --needed mako libnotify
 
+ln -sfn "$DOTFILES_DIR/mako" ~/.config/mako
+
 ##############################################
 # Action menu
 ##############################################

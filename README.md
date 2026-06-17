@@ -8,7 +8,7 @@ run `install.sh` from a base Arch install, and the environment is ready.
 | Area | What's included | Status |
 | ---- | --------------- | ------ |
 | Window management | Tiling, workspaces, window rules, keybindings (Hyprland) | done |
-| Status bar | Clock, volume, microphone, connectivity, power profile (Waybar) | done |
+| Status bar | Clock, volume, microphone, connectivity, power profile, awake and do-not-disturb toggles (Waybar) | done |
 | Audio | Full PipeWire stack with PulseAudio, JACK and ALSA compatibility | done |
 | Connectivity | Bluetooth toggle and manager, network indicator | done |
 | Power management | Performance profiles, suspend, reboot, shutdown | done |
@@ -19,7 +19,7 @@ run `install.sh` from a base Arch install, and the environment is ready.
 | System actions | Quick-access menu for common system operations | done |
 | Screenshots | Region and full-screen capture, saved to file or clipboard | done |
 | Clipboard | Wayland clipboard with persistent history picker (cliphist + fuzzel) | done |
-| Notifications | Desktop notification daemon for app and system alerts (mako) | done |
+| Notifications | Desktop notifications with a do-not-disturb toggle (mako) | done |
 | Session start | TTY auto-login on tty1 launches Hyprland (requires LUKS full-disk encryption) | done |
 | Wallpaper | Wallpaper setter that survives restarts | pending |
 | Screen locking | Lock on demand, on idle and before sleep, with an awake (idle inhibitor) toggle (hyprlock + hypridle) | done |

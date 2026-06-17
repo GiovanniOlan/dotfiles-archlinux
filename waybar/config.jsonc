@@ -6,7 +6,7 @@
 
     "modules-left":   ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right":  ["group/audio", "group/power", "group/connectivity", "tray"],
+    "modules-right":  ["group/state", "group/audio", "group/power", "group/connectivity", "tray"],
 
     "hyprland/workspaces": {
         "on-click": "activate"
@@ -37,9 +37,9 @@
         "on-click":      "pavucontrol -t 3"
     },
 
-    "group/power": {
+    "group/state": {
         "orientation": "horizontal",
-        "modules": ["custom/hypridle", "battery", "custom/power-profile"]
+        "modules": ["custom/hypridle", "custom/dnd"]
     },
 
     "custom/hypridle": {
@@ -48,6 +48,19 @@
         "interval":    "once",
         "signal":      8,
         "on-click":    "~/.config/dotfiles-archlinux/scripts/hypridle-toggle.sh"
+    },
+
+    "custom/dnd": {
+        "exec":        "makoctl mode | grep -q '^do-not-disturb$' && echo '{\"text\":\"󰂛\",\"tooltip\":\"Do Not Disturb\"}' || echo '{\"text\":\"󰂚\",\"tooltip\":\"Notifications on\"}'",
+        "return-type": "json",
+        "interval":    "once",
+        "signal":      9,
+        "on-click":    "~/.config/dotfiles-archlinux/scripts/dnd-toggle.sh"
+    },
+
+    "group/power": {
+        "orientation": "horizontal",
+        "modules": ["battery", "custom/power-profile"]
     },
 
     "battery": {
