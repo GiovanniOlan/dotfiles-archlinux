@@ -97,5 +97,5 @@ hl.bind(mainMod .. " + equal", hl.dsp.exec_cmd(
 
 -- ── Accesibility ────────────────────────────────────────────────────────────────────
 -- Keyboard-driven pointer control (wl-kbptr)
-hl.bind("SUPER + A",         hl.dsp.exec_cmd("pkill wl-kbptr || wl-kbptr"))
-hl.bind("SUPER + SHIFT + A", hl.dsp.exec_cmd("pkill wl-kbptr || wl-kbptr -o 'general.modes=split,click'"))
+hl.bind("SUPER + S",         hl.dsp.exec_cmd("pkill wl-kbptr || wl-kbptr"))
+hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("pkill wl-kbptr || wl-kbptr -o 'general.modes=split,click'"))

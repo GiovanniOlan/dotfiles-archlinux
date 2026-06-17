@@ -19,11 +19,12 @@ run `install.sh` from a base Arch install, and the environment is ready.
 | System actions | Quick-access menu for common system operations | done |
 | Screenshots | Region and full-screen capture, saved to file or clipboard | done |
 | Clipboard | Wayland clipboard with persistent history picker (cliphist + fuzzel) | done |
-| Session start | Display manager or TTY auto-login to launch Hyprland | pending |
+| Notifications | Desktop notification daemon for app and system alerts | pending |
+| Session start | TTY auto-login on tty1 launches Hyprland (requires LUKS full-disk encryption) | done |
 | Wallpaper | Wallpaper setter that survives restarts | pending |
-| Screen locking | Lock screen on suspend and on demand | pending |
+| Screen locking | Lock on demand, on idle and before sleep, with an awake (idle inhibitor) toggle (hyprlock + hypridle) | done |
 | Authentication | Polkit agent for GUI privilege escalation dialogs | done |
-| System fonts | Base fonts so apps render text correctly out of the box | pending |
+| System fonts | Base fonts so apps render text correctly out of the box | done |
 
 ## Hardware-specific packages
 
