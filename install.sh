@@ -95,10 +95,16 @@ mkdir -p ~/Pictures/Screenshots
 sudo pacman -S --needed wl-clipboard cliphist fuzzel
 
 ##############################################
+# Notifications
+##############################################
+
+sudo pacman -S --needed mako libnotify
+
+##############################################
 # Action menu
 ##############################################
 
-sudo pacman -S --needed fuzzel
+sudo pacman -S --needed fuzzel libnotify
 
 mkdir -p ~/.config/dotfiles-archlinux
 ln -sfn "$DOTFILES_DIR/scripts" ~/.config/dotfiles-archlinux/scripts
