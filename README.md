@@ -1,6 +1,51 @@
 # dotfiles-archlinux
 
-A reproducible Arch Linux environment built around Hyprland. Clone the repo,
+A reproducible Arch Linux environment built around Hyprland. This repo contains
+two independent scripts: one that installs Arch Linux itself, and one that
+deploys the desktop environment on top of an existing install.
+
+---
+
+## Arch Linux installer (`archinstall.sh`)
+
+An opinionated, mostly unattended Arch Linux installer. Boot from the official
+Arch ISO, connect to the internet, set your timezone and keyboard layout, then
+run:
+
+```bash
+curl -sL https://raw.githubusercontent.com/GiovanniOlan/dotfiles-archlinux/main/archinstall.sh -o archinstall.sh
+bash archinstall.sh
+```
+
+The script asks only for the essentials — target disk, hostname, username,
+password and LUKS passphrase — and handles everything else automatically.
+
+### What it sets up
+
+| Area | Detail |
+| ---- | ------ |
+| Partitioning | 1 GB EFI (FAT32) + rest of disk under LUKS |
+| Encryption | LUKS2 with Argon2id |
+| Filesystem | BTRFS with subvolumes: `@`, `@home`, `@snapshots`, `@var_log`, `@var_cache_pacman_pkg`, `@var_temp`, `@swap` |
+| Swap | BTRFS swapfile with CoW disabled |
+| Bootloader | GRUB with UEFI and full-disk encryption support |
+| Single passphrase | A keyfile embedded in the initramfs unlocks LUKS after GRUB, so the passphrase is only entered once at boot |
+| Init system | systemd-based mkinitcpio hooks (`sd-encrypt`) |
+| Locale | `en_US.UTF-8` with `es_MX.UTF-8` for time, currency and regional formats |
+
+### Prerequisites
+
+- UEFI machine (legacy BIOS not supported)
+- Boot from the [Arch Linux ISO](https://archlinux.org/download/)
+- Internet connection
+- Timezone set: `timedatectl set-timezone Region/City`
+- Keyboard layout set: `loadkeys your_layout`
+
+---
+
+## Dotfiles installer (`install.sh`)
+
+Clone the repo,
 run `install.sh` from a base Arch install, and the environment is ready.
 
 ## What's included
