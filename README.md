@@ -6,15 +6,15 @@ deploys the desktop environment on top of an existing install.
 
 ---
 
-## Arch Linux installer (`archinstall.sh`)
+## Arch Linux installer (`archdotfiles.sh`)
 
 An opinionated, mostly unattended Arch Linux installer. Boot from the official
 Arch ISO, connect to the internet, set your timezone and keyboard layout, then
 run:
 
 ```bash
-curl -sL https://raw.githubusercontent.com/GiovanniOlan/dotfiles-archlinux/main/archinstall.sh -o archinstall.sh
-bash archinstall.sh
+curl -sL https://raw.githubusercontent.com/GiovanniOlan/dotfiles-archlinux/main/archdotfiles.sh -o archdotfiles.sh
+bash archdotfiles.sh
 ```
 
 The script asks only for the essentials — target disk, hostname, username,
@@ -43,10 +43,10 @@ password and LUKS passphrase — and handles everything else automatically.
 
 ---
 
-## Dotfiles installer (`install.sh`)
+## Dotfiles installer (`dotfiles.sh`)
 
 Clone the repo,
-run `install.sh` from a base Arch install, and the environment is ready.
+run `dotfiles.sh` from a base Arch install, and the environment is ready.
 
 ## What's included
 
@@ -73,7 +73,7 @@ run `install.sh` from a base Arch install, and the environment is ready.
 
 ## Hardware-specific packages
 
-These are not installed by `install.sh` because they depend on your hardware.
+These are not installed by `dotfiles.sh` because they depend on your hardware.
 Install manually after running the script if they apply to your machine.
 
 | Package | When to install |
