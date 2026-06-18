@@ -99,3 +99,6 @@ hl.bind(mainMod .. " + equal", hl.dsp.exec_cmd(
 -- Keyboard-driven pointer control (wl-kbptr)
 hl.bind("SUPER + S",         hl.dsp.exec_cmd("pkill wl-kbptr || wl-kbptr"))
 hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("pkill wl-kbptr || wl-kbptr -o 'general.modes=split,click'"))
+
+-- ── Transcription ────────────────────────────────────────────────────────────
+hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("$HOME/exec-apps/Handy_0.8.3_amd64.AppImage --toggle-transcription"))

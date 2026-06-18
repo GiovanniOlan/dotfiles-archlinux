@@ -3,14 +3,17 @@ set -euo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+mkdir -p ~/.config
+
 ##############################################
 # User directories
 ##############################################
 
 sudo pacman -S --needed xdg-user-dirs
 
-ln -sfn "$DOTFILES_DIR/user-dirs/user-dirs.dirs" ~/.config/user-dirs.dirs
+cp "$DOTFILES_DIR/user-dirs/user-dirs.dirs" ~/.config/user-dirs.dirs
 xdg-user-dirs-update
+mkdir "$HOME/Pictures/Screenshots"
 
 ##############################################
 # Base system
@@ -40,8 +43,10 @@ ln -sfn "$DOTFILES_DIR/fontconfig" ~/.config/fontconfig
 ##############################################
 
 if ! command -v paru &>/dev/null; then
-    git clone https://aur.archlinux.org/paru.git /tmp/paru
-    (cd /tmp/paru && makepkg -si --noconfirm)
+    tmp="$(mktemp -d)"
+    git clone https://aur.archlinux.org/paru.git "$tmp/paru"
+    (cd "$tmp/paru" && makepkg -si --noconfirm)
+    rm -rf "$tmp"
 fi
 
 ##############################################
