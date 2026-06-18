@@ -87,11 +87,11 @@ ln -sfn "$DOTFILES_DIR/fuzzel" ~/.config/fuzzel
 # Screenshots
 ##############################################
 
-sudo pacman -S --needed grim slurp jq wl-clipboard imv
+# sudo pacman -S --needed grim slurp jq wl-clipboard imv
 
-paru -S --needed grimblast
+# paru -S --needed grimblast
 
-mkdir -p ~/Pictures/Screenshots
+# mkdir -p ~/Pictures/Screenshots
 
 ##############################################
 # Clipboard
