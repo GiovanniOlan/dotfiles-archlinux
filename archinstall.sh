@@ -267,6 +267,7 @@ PKGS=(
     base linux linux-headers linux-firmware
     btrfs-progs
     grub efibootmgr
+    snapper snap-pac grub-btrfs inotify-tools
     networkmanager
     sudo git base-devel
     neovim
@@ -339,10 +340,43 @@ sed -i "s|^GRUB_CMDLINE_LINUX=.*|GRUB_CMDLINE_LINUX=\"rd.luks.name=${LUKS_UUID}=
 sed -i 's/^#GRUB_ENABLE_CRYPTODISK=y/GRUB_ENABLE_CRYPTODISK=y/' /etc/default/grub
 
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
-grub-mkconfig -o /boot/grub/grub.cfg
+
+# Snapshots (snapper + snap-pac + grub-btrfs)
+# @snapshots is already mounted at /.snapshots, but snapper insists on creating
+# its own subvolume there. Let it create the config, discard that throwaway
+# subvolume, and put our persistent @snapshots back in its place.
+umount /.snapshots
+rmdir /.snapshots
+snapper --no-dbus -c root create-config /
+btrfs subvolume delete /.snapshots
+mkdir /.snapshots
+mount /.snapshots
+chmod 750 /.snapshots
+
+# Opinionated tuning: protection comes from snap-pac (a pre/post snapshot on
+# every pacman transaction). No hourly timeline; cleanup keeps the count bounded.
+sed -i 's/^TIMELINE_CREATE=.*/TIMELINE_CREATE="no"/'               /etc/snapper/configs/root
+sed -i 's/^NUMBER_LIMIT=.*/NUMBER_LIMIT="20"/'                     /etc/snapper/configs/root
+sed -i 's/^NUMBER_LIMIT_IMPORTANT=.*/NUMBER_LIMIT_IMPORTANT="10"/' /etc/snapper/configs/root
+sed -i "s/^ALLOW_USERS=.*/ALLOW_USERS=\"${USERNAME}\"/"            /etc/snapper/configs/root
+
+# grub-btrfsd watches the snapshot dir and regenerates the GRUB submenu live.
+# The packaged unit defaults to timeshift; point it at snapper's /.snapshots.
+mkdir -p /etc/systemd/system/grub-btrfsd.service.d
+cat > /etc/systemd/system/grub-btrfsd.service.d/override.conf <<'EOF'
+[Service]
+ExecStart=
+ExecStart=/usr/bin/grub-btrfsd --syslog /.snapshots
+EOF
 
 # Services
 systemctl enable NetworkManager
+systemctl enable grub-btrfsd.service
+systemctl enable snapper-cleanup.timer
+
+# Baseline snapshot, then generate grub.cfg (now including the snapshots submenu).
+snapper --no-dbus -c root create -d "Initial installation"
+grub-mkconfig -o /boot/grub/grub.cfg
 
 CHROOT
 

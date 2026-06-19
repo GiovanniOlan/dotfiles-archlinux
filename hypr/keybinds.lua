@@ -81,9 +81,9 @@ hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = tr
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
 
 -- ── Screenshots ──────────────────────────────────────────────────────────────────────
-hl.bind("PRINT",                hl.dsp.exec_cmd("grimblast copysave area"))
-hl.bind("SHIFT + PRINT",        hl.dsp.exec_cmd("grimblast copysave output"))
-hl.bind("CTRL + SHIFT + PRINT", hl.dsp.exec_cmd("grimblast copysave screen"))
+hl.bind("PRINT",                hl.dsp.exec_cmd("grimblast -n copysave area"))
+hl.bind("SHIFT + PRINT",        hl.dsp.exec_cmd("grimblast -n copysave output"))
+hl.bind("CTRL + SHIFT + PRINT", hl.dsp.exec_cmd("grimblast -n copysave screen"))
 
 -- ── Clipboard ─────────────────────────────────────────────────────────────────────────
 hl.bind("SUPER + V", hl.dsp.exec_cmd("cliphist list | fuzzel -d | cliphist decode | wl-copy"))

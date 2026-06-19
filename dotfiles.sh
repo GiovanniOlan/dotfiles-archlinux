@@ -160,6 +160,17 @@ ln -sfn "$DOTFILES_DIR/mako" ~/.config/mako
 ok "Notifications ready."
 
 ##############################################
+# Screenshots
+##############################################
+
+info "Installing screenshot tools..."
+
+sudo pacman -S --needed --noconfirm grim slurp jq wl-clipboard libnotify
+paru -S --needed --noconfirm --sudoloop grimblast-git
+
+ok "Screenshots ready."
+
+##############################################
 # Action menu
 ##############################################
 

@@ -67,6 +67,7 @@ it builds the rest to a fixed, opinionated layout. Roughly, it:
 | Subvolumes | `@` (holds `/` and `/boot`), `@home`, `@snapshots`, `@var_log`, `@var_cache_pacman_pkg`, `@var_temp`, `@swap` |
 | Swap | BTRFS swapfile on its own subvolume, copy-on-write disabled |
 | Bootloader | GRUB (UEFI) with cryptodisk support |
+| Snapshots | `snapper` + `snap-pac` (automatic snapshot on every pacman transaction) + `grub-btrfs` (boot straight into any snapshot from the GRUB menu) |
 | Single passphrase | A keyfile embedded in the initramfs unlocks LUKS after GRUB, so you type the passphrase only **once** at boot |
 | Init | systemd-based `mkinitcpio` hooks (`sd-encrypt`) |
 | Locale | `en_US.UTF-8`, with `es_MX.UTF-8` for time, currency and regional formats |
