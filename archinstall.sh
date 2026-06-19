@@ -68,6 +68,7 @@ fi
 ##############################################
 
 if $DEV_MODE; then
+    INSTALL_DOTFILES=true
     echo
     info "Available disks:"
     lsblk -dpno NAME,SIZE,MODEL | grep -v "loop\|rom"
@@ -80,10 +81,14 @@ if $DEV_MODE; then
     USER_PASS="test"
     LUKS_PASS="testtest"
     SWAP_SIZE="1"
-    warn "Dev values → disk=$DISK  host=$HOSTNAME  user=$USERNAME  swap=${SWAP_SIZE}G"
+    warn "Dev values → disk=$DISK  host=$HOSTNAME  user=$USERNAME  swap=${SWAP_SIZE}G  dotfiles=$INSTALL_DOTFILES"
     echo
 else
     echo
+    read -rp "Install dotfiles on first boot? [y/N] " _d
+    [[ "${_d,,}" == "y" ]] && INSTALL_DOTFILES=true || INSTALL_DOTFILES=false
+    echo
+
     info "Available disks:"
     lsblk -dpno NAME,SIZE,MODEL | grep -v "loop\|rom"
     echo
@@ -154,7 +159,7 @@ umount -R /mnt 2>/dev/null || true
 cryptsetup close cryptroot 2>/dev/null || true
 
 ##############################################
-# Particionado
+# Partitioning
 ##############################################
 
 info "Partitioning $DISK..."
@@ -344,6 +349,34 @@ CHROOT
 unset USER_PASS
 
 ##############################################
+# Dotfiles (first boot)
+##############################################
+
+if $INSTALL_DOTFILES; then
+    info "Cloning dotfiles repo..."
+
+    git clone https://github.com/GiovanniOlan/dotfiles-archlinux.git \
+        "/mnt/home/${USERNAME}/dotfiles-archlinux"
+
+    touch "/mnt/home/${USERNAME}/.dotfiles-pending"
+
+    cat >> "/mnt/home/${USERNAME}/.bash_profile" <<'EOF'
+
+if [[ -f ~/.dotfiles-pending ]]; then
+    rm ~/.dotfiles-pending
+    bash ~/dotfiles-archlinux/dotfiles.sh
+fi
+EOF
+
+    arch-chroot /mnt chown -R "${USERNAME}:${USERNAME}" \
+        "/home/${USERNAME}/dotfiles-archlinux" \
+        "/home/${USERNAME}/.dotfiles-pending" \
+        "/home/${USERNAME}/.bash_profile"
+
+    ok "Dotfiles will install automatically on first login as ${USERNAME}."
+fi
+
+##############################################
 # Cleanup and finish
 ##############################################
 
@@ -354,3 +387,4 @@ cryptsetup close cryptroot
 
 echo
 ok "Installation complete. Remove the installation media and reboot."
+$INSTALL_DOTFILES && warn "On first login as ${USERNAME}, dotfiles will install automatically."

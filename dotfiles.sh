@@ -28,6 +28,12 @@ ping -c1 -W3 archlinux.org &>/dev/null || die "No internet connection."
 ok "Running as $USER."
 ok "Internet connection verified."
 
+# Prompt sudo once and keep it alive for the entire script
+sudo -v
+while true; do sudo -n true; sleep 60; kill -0 "$$" 2>/dev/null || exit; done &
+SUDO_KEEPALIVE_PID=$!
+trap 'kill "$SUDO_KEEPALIVE_PID" 2>/dev/null' EXIT
+
 mkdir -p ~/.config
 
 ##############################################
