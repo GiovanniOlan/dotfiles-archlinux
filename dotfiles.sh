@@ -105,7 +105,7 @@ sudo pacman -S --needed --noconfirm \
     hyprland hyprlock hypridle \
     kitty nautilus brightnessctl playerctl fuzzel
 
-paru -S --needed --noconfirm wl-kbptr
+paru -S --needed --noconfirm --sudoloop wl-kbptr
 
 ln -sfn "$DOTFILES_DIR/hypr"     ~/.config/hypr
 ln -sfn "$DOTFILES_DIR/wl-kbptr" ~/.config/wl-kbptr
