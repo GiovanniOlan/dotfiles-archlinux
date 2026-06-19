@@ -353,14 +353,17 @@ unset USER_PASS
 ##############################################
 
 if $INSTALL_DOTFILES; then
-    info "Cloning dotfiles repo..."
+    info "Setting up dotfiles for first boot..."
 
-    git clone https://github.com/GiovanniOlan/dotfiles-archlinux.git \
-        "/mnt/home/${USERNAME}/dotfiles-archlinux"
+    arch-chroot /mnt /bin/bash <<CHROOT_DOTFILES
+set -euo pipefail
 
-    touch "/mnt/home/${USERNAME}/.dotfiles-pending"
+git clone https://github.com/GiovanniOlan/dotfiles-archlinux.git \
+    /home/${USERNAME}/dotfiles-archlinux
 
-    cat >> "/mnt/home/${USERNAME}/.bash_profile" <<'EOF'
+touch /home/${USERNAME}/.dotfiles-pending
+
+cat >> /home/${USERNAME}/.bash_profile <<'EOF'
 
 if [[ -f ~/.dotfiles-pending ]]; then
     rm ~/.dotfiles-pending
@@ -368,10 +371,12 @@ if [[ -f ~/.dotfiles-pending ]]; then
 fi
 EOF
 
-    arch-chroot /mnt chown -R "${USERNAME}:${USERNAME}" \
-        "/home/${USERNAME}/dotfiles-archlinux" \
-        "/home/${USERNAME}/.dotfiles-pending" \
-        "/home/${USERNAME}/.bash_profile"
+chown -R ${USERNAME}:${USERNAME} \
+    /home/${USERNAME}/dotfiles-archlinux \
+    /home/${USERNAME}/.dotfiles-pending \
+    /home/${USERNAME}/.bash_profile
+
+CHROOT_DOTFILES
 
     ok "Dotfiles will install automatically on first login as ${USERNAME}."
 fi
